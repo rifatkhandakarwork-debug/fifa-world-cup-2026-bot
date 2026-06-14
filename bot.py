@@ -78,11 +78,18 @@ def build_app() -> Application:
     return application
 
 
-def main() -> None:
+async def run_async() -> None:
     setup_logging()
-    asyncio.set_event_loop(asyncio.new_event_loop())
     app = build_app()
-    app.run_polling(allowed_updates=["message", "callback_query"])
+    await app.bot_data["services"].db.init()
+    async with app:
+        await app.start()
+        await app.updater.start_polling(allowed_updates=["message", "callback_query"])
+        await asyncio.Event().wait()
+
+
+def main() -> None:
+    asyncio.run(run_async())
 
 
 if __name__ == "__main__":
