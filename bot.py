@@ -80,6 +80,7 @@ def build_app() -> Application:
 
 def main() -> None:
     setup_logging()
+    asyncio.set_event_loop(asyncio.new_event_loop())
     app = build_app()
     app.run_polling(allowed_updates=["message", "callback_query"])
 
