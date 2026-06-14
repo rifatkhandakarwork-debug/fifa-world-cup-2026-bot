@@ -1,0 +1,13 @@
+config.php
+*.php
+state.json
+*.log
+.env
+*.sqlite3
+.venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+*.bat
+*.vbs
+smoke*.py

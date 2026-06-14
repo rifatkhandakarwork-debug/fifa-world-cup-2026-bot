@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: fifa-world-cup-2026-bot
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python render_start.py
+    autoDeploy: true
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: DATABASE_PATH
+        value: worldcup_bot.sqlite3
+      - key: TIMEZONE
+        value: Asia/Dhaka
+      - key: FIFA_CALENDAR_URL
+        value: https://api.fifa.com/api/v3/calendar/matches
+      - key: FIFA_COMPETITION_ID
+        value: "17"
+      - key: ESPN_SCOREBOARD_URL
+        value: https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard
+      - key: NEWS_FEEDS
+        value: https://news.google.com/rss/search?q=%22FIFA%20World%20Cup%202026%22&hl=en-US&gl=US&ceid=US:en
